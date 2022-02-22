@@ -1,43 +1,58 @@
 print("Данный калькулятор позволяет делать некоторые операции над множеством")
 print("% это объединение\n"
       "& это пересечение\n"
-      "/ это вычитание\n")
+      "/ это вычитание")
+print("Вы можете остановить операции командой 'stop'\n")
 
 
 def input_operation(mn1, mn2, mn3):
     print('Введите знак операции над множествами')
-    operation1 = input("Введите один из знаков(%, &, /): ")
-    operation2 = input("Введите один из знаков(%, &, /): ")
+
     op1 = mn1 | mn2
     op2 = mn1 & mn2
     op3 = mn1 - mn2
 
-    if operation1 == operation2 and operation1 == "%":
-        return op1 | mn3
+    while True:
+        operation1 = input("Введите один из знаков(%, &, /): ")
+        if operation1 == "stop":
+            break
+        operation2 = input("Введите один из знаков(%, &, /): ")
 
-    elif operation1 == operation2 and operation1 == "&":
-        return op2 & mn3
+        if operation1 == operation2 and operation1 == "%":
+            print(op1 | mn3)
+            continue
 
-    elif operation1 == operation2 and operation1 == "/":
-        return op3 - mn3
+        elif operation1 == operation2 and operation1 == "&":
+            print(op2 & mn3)
+            continue
 
-    elif operation1 == "%":
-        if operation2 == "&":
-            return op1 & mn3
-        elif operation2 == "/":
-            return op1 - mn3
+        elif operation1 == operation2 and operation1 == "/":
+            print(op3 - mn3)
+            continue
 
-    elif operation1 == "&":
-        if operation2 == "%":
-            return op2 | mn3
-        elif operation2 == "/":
-            return op2 - mn3
+        elif operation1 == "%":
+            if operation2 == "&":
+                print(op1 & mn3)
+                continue
+            elif operation2 == "/":
+                print(op1 - mn3)
+                continue
 
-    elif operation1 == "/":
-        if operation2 == "%":
-            return op3 | mn3
-        elif operation2 == "&":
-            return op3 & mn3
+        elif operation1 == "&":
+            if operation2 == "%":
+                print(op2 | mn3)
+                continue
+            elif operation2 == "/":
+                print(op2 - mn3)
+            continue
+
+        elif operation1 == "/":
+            if operation2 == "%":
+                print(op3 | mn3)
+                continue
+            elif operation2 == "&":
+                print(op3 & mn3)
+            continue
 
 
 count_el1 = int(input('Введите количество элементов в первом множестве '))
